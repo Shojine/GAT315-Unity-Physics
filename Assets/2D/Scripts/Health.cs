@@ -30,15 +30,24 @@ public class Health : MonoBehaviour
 
 		health -= damage;
 
-		// Trigger damage event
 		gameObject.GetComponent<CharacterController2D>().OnHit();
-
 		onDamage?.Invoke();
 
-        if (health <= 0)
-		{
-			Die();
-		}
+        if (health <= 0) Die();
+	}
+
+	public void ApplyDamage(float damage, Vector2 knockbackForce)
+	{
+		if (isDead) return;
+
+		health -= damage;
+
+		var controller = gameObject.GetComponent<CharacterController2D>();
+		controller.OnHit();
+		controller.Knockback(knockbackForce);
+		onDamage?.Invoke();
+
+		if (health <= 0) Die();
 	}
 
 	public void Heal(float amount)

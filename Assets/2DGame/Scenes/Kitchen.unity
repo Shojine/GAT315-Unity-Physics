@@ -750,6 +750,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8640318000725855211, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
+      propertyPath: Pan2D
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4055698061246444301, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.48
@@ -959,16 +963,36 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
+      propertyPath: keyID
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
+      propertyPath: toolName
+      value: TV Remote
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
+      propertyPath: lockedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 39b23e91dca454c4ca791bb213258ad2, type: 3}
+    - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: searchSound
       value: 
-      objectReference: {fileID: 8300000, guid: 6eed10bef97e31044b3723ec7ffeb324, type: 3}
+      objectReference: {fileID: 8300000, guid: 7747c75cf0fa31a4e8c77276a73abb36, type: 3}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: emptyMessage
       value: Nothing but cold food
       objectReference: {fileID: 0}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
+      propertyPath: lockedMessage
+      value: There's a chain is blocking the fridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: searchMessage
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
+      propertyPath: requiredToolName
+      value: Bolt Cutters
       objectReference: {fileID: 0}
     - target: {fileID: 7517910973479731113, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: m_Name
@@ -1376,9 +1400,13 @@ PrefabInstance:
       value: LaundryKey
       objectReference: {fileID: 0}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
-      propertyPath: searchSound
+      propertyPath: keySound
       value: 
       objectReference: {fileID: 8300000, guid: 2d2e2e2080f08de48b1d5426b210b2f0, type: 3}
+    - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
+      propertyPath: searchSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f2e6faccdab73d54e8cf6cacf4d3e550, type: 3}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: emptyMessage
       value: Nothing but spices
@@ -6607,7 +6635,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -7990,6 +8018,9 @@ MonoBehaviour:
     maxNormalAngle: 0
   animator: {fileID: 144474402}
   spriteRenderer: {fileID: 144474403}
+  onLand:
+    m_PersistentCalls:
+      m_Calls: []
   walkingSound: {fileID: 8300000, guid: 76656f0393dbdfa488ec163e0d22ac33, type: 3}
   rb: {fileID: 1444235721}
 --- !u!114 &1444235719
@@ -8384,10 +8415,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.0010416667
     y: 0
-    width: 0.16041668
-    height: 0.29074073
+    width: 0.28645834
+    height: 0.4259259
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60

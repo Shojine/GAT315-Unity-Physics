@@ -7130,9 +7130,13 @@ PrefabInstance:
       value: KitchenKey
       objectReference: {fileID: 0}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
-      propertyPath: searchSound
+      propertyPath: keySound
       value: 
       objectReference: {fileID: 8300000, guid: 2d2e2e2080f08de48b1d5426b210b2f0, type: 3}
+    - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
+      propertyPath: searchSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 31f07f25204eb7b46a6ff59f6a69c83f, type: 3}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: emptyMessage
       value: 
@@ -7494,10 +7498,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.00052083336
     y: 0
-    width: 0.16041668
-    height: 0.29074073
+    width: 0.35520834
+    height: 0.42962962
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -8564,6 +8568,9 @@ MonoBehaviour:
     maxNormalAngle: 0
   animator: {fileID: 624219163}
   spriteRenderer: {fileID: 624219164}
+  onLand:
+    m_PersistentCalls:
+      m_Calls: []
   walkingSound: {fileID: 8300000, guid: 76656f0393dbdfa488ec163e0d22ac33, type: 3}
   rb: {fileID: 2054094955}
 --- !u!82 &2054094959

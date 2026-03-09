@@ -13,6 +13,10 @@ public class DamageInflictor : MonoBehaviour
 	[SerializeField] string affectTag;
 	[SerializeField] LayerMask affectLayers = Physics.AllLayers;
 
+	[Header("Knockback")]
+	[SerializeField] float knockbackForce = 4f;    // Horizontal knockback strength
+	[SerializeField] float knockbackVertical = 3f; // Vertical bounce height
+
 	float damageTimer = 0;
 
 
@@ -39,16 +43,20 @@ public class DamageInflictor : MonoBehaviour
     private void ApplyDamage(GameObject target)
     {
         if (Time.time < damageTimer || !IsValid(target)) return;
-        
-        if(target.TryGetComponent<Health>(out Health health))
+
+        if (target.TryGetComponent<Health>(out Health health))
         {
-            health.ApplyDamage(damageAmount);
+            Vector2 knockback = CalculateKnockback(target.transform.position);
+            health.ApplyDamage(damageAmount, knockback);
             damageTimer = Time.time + damageRate;
-            if (destroySelfOnDamage)
-            {
-                Destroy(gameObject);
-            }
+            if (destroySelfOnDamage) Destroy(gameObject);
         }
+    }
+
+    private Vector2 CalculateKnockback(Vector3 targetPosition)
+    {
+        float horizontal = Mathf.Sign(targetPosition.x - transform.position.x);
+        return new Vector2(horizontal * knockbackForce, knockbackVertical);
     }
 
 

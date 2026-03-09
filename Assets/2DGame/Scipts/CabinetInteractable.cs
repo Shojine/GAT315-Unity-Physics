@@ -6,15 +6,24 @@ public class CabinetInteractable : MonoBehaviour
     [SerializeField] private string searchMessage = "You found a key!"; // Message to display when the key is found
     [SerializeField] private string emptyMessage = "The cabinet is empty."; // Message to display if the cabinet has already been searched
     [SerializeField] private AudioClip searchSound; // Sound to play when searching the cabinet
+    [SerializeField] private AudioClip keySound;
+
+    [Header("Required Tool")]
+    [SerializeField] private string requiredToolName; // Player must have this tool to open the cabinet
+    [SerializeField] private string lockedMessage = "I cannot open this."; // Message shown when player lacks the required tool
+    [SerializeField] private AudioClip lockedSound; // Sound to play when the cabinet is locked
+
+    [Header("Tool Pickup (optional)")]
+    [SerializeField] private string toolName; // Tool added to inventory when the cabinet is searched
 
     private bool isPlayerInRange = false;
-    private bool hasKey = false; // Whether the cabinet still contains the key
+    private bool hasKey = false; // Whether the cabinet still contains a key or tool
     private DialogueManager dialogueManager;
     private AudioSource audioSource;
 
     private void Start()
     {
-        if(!string.IsNullOrEmpty(keyID)) hasKey = true;
+        if (!string.IsNullOrEmpty(keyID) || !string.IsNullOrEmpty(toolName)) hasKey = true;
         dialogueManager = FindObjectOfType<DialogueManager>(); // Find the DialogueManager in the scene
         audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
     }
@@ -23,34 +32,28 @@ public class CabinetInteractable : MonoBehaviour
     {
         if (isPlayerInRange)
         {
+            // Check if a required tool is needed and the player doesn't have it
+            if (!string.IsNullOrEmpty(requiredToolName) && !InventoryManager.Instance.HasKey(requiredToolName))
+            {
+                if (dialogueManager != null)
+                    dialogueManager.ShowDialogue(lockedMessage);
+                audioSource.PlayOneShot(lockedSound);
+                return;
+            }
+
             Debug.Log("Player is in range. Searching cabinet...");
 
-            // Play the search sound
-            if (audioSource != null && searchSound != null)
-            {
-                Debug.Log("Playing search sound...");
-                audioSource.PlayOneShot(searchSound);
-            }
-            else
-            {
-                Debug.LogWarning("AudioSource or searchSound is missing.");
-            }
-
+            Debug.Log($"Cabinet has item: {hasKey}");
             if (hasKey)
             {
-                Debug.Log("Cabinet contains a key. Adding key to inventory...");
+                audioSource.PlayOneShot(keySound);
 
-                // Add the key to the player's inventory
-                var player = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
-                if (player != null)
-                {
-                    player.AddKey(keyID);
-                    Debug.Log($"Key '{keyID}' added to player's inventory.");
-                }
-                else
-                {
-                    Debug.LogError("Player GameObject or CharacterController2D script is missing.");
-                }
+                // Add key or tool to inventory
+                if (!string.IsNullOrEmpty(keyID))
+                    InventoryManager.Instance.AddKey(keyID);
+
+                if (!string.IsNullOrEmpty(toolName))
+                    InventoryManager.Instance.AddKey(toolName);
 
                 // Show the message for finding the key
                 if (dialogueManager != null)
@@ -63,12 +66,12 @@ public class CabinetInteractable : MonoBehaviour
                     Debug.LogError("DialogueManager is missing.");
                 }
 
-                hasKey = false; // Mark the cabinet as empty
+                this.hasKey = false; // Mark the cabinet as empty
             }
             else
             {
                 Debug.Log("Cabinet is empty.");
-
+                audioSource.PlayOneShot(searchSound);
                 // Show the message for an empty cabinet
                 if (dialogueManager != null)
                 {
@@ -79,6 +82,7 @@ public class CabinetInteractable : MonoBehaviour
                 {
                     Debug.LogError("DialogueManager is missing.");
                 }
+                audioSource.PlayOneShot(searchSound);
             }
         }
         else

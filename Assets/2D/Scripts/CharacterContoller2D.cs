@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Events;
 
 /// <summary>
 /// A responsive 2D character controller that handles movement, jumping, and ground detection.
@@ -29,6 +30,9 @@ public class CharacterController2D : MonoBehaviour
     [Header("Components")]
     [SerializeField] Animator animator;             // Reference to character's animator
     [SerializeField] SpriteRenderer spriteRenderer; // Reference to character's sprite renderer
+
+    [Header("Events")]
+    [SerializeField] UnityEvent onLand;              // Fired when the character lands on the ground
 
     [Header("Audio")]
     [SerializeField] private AudioClip walkingSound; // Footstep sound
@@ -166,6 +170,8 @@ public class CharacterController2D : MonoBehaviour
 
             // Reset jump animation trigger to prevent retriggering
             animator?.ResetTrigger("Jump");
+
+            onLand?.Invoke();
         }
 
         // Reset coyote timer when grounded
@@ -263,13 +269,22 @@ public class CharacterController2D : MonoBehaviour
     }
 
     /// <summary>
+    /// Apply an impulse knockback force, overriding current velocity.
+    /// </summary>
+    public void Knockback(Vector2 force)
+    {
+        currentSpeed = force.x;
+        rb.linearVelocity = force;
+    }
+
+    /// <summary>
     /// Flip the character's facing direction by updating the sprite.
     /// </summary>
     private void FlipDirection()
     {
         facing *= -1;  // Toggle between 1 and -1
         if (spriteRenderer != null)
-            spriteRenderer.flipX = facing == FACE_RIGHT;  // Flip sprite when facing right (sprite default is left)
+            spriteRenderer.flipX = facing == FACE_LEFT;  // Flip sprite when facing left (sprite default is right)
     }
 
     /// <summary>

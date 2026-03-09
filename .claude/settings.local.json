@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(cs|prefab|asset\\)$\")",
+      "Bash(grep -E \"\\\\.\\(prefab|cs\\)$\")",
+      "Bash(ls -la \"c:\\\\Computer_stuff_work\\\\Neumont\\\\GAT315\\\\Projects\\\\GAT315-Physics-Unity\\\\Assets\\\\2D\"\" | grep -E \"^d \")",
+      "Bash(grep -E \"\\\\.\\(cs|prefab\\)$\")"
+    ]
+  }
+}

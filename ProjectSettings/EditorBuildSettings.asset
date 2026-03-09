@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/2DGame/Scenes/Win.unity
     guid: aebd1fbec6c2e60458d6cf9536ccdeaa
+  - enabled: 1
+    path: Assets/2DGame/Scenes/MainScene.unity
+    guid: ad01bd28182c9a74ba724ed40702de4a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

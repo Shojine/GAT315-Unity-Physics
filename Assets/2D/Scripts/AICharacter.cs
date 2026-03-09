@@ -15,7 +15,7 @@ public class AICharacter : MonoBehaviour
 
     [Header("References")]
     [SerializeField] public CharacterController2D characterController;
-    [SerializeField] private AnimationEventRouter animationEventRouter;
+    [SerializeField] private Animator animator;
 
     [Header("AI Settings")]
     [SerializeField] private float idleTime = 2f; // Default idle time
@@ -24,6 +24,12 @@ public class AICharacter : MonoBehaviour
 
     private GameObject target = null; // The target the AI is interacting with
     private State currentState = State.Idle;
+
+    private void Start()
+    {
+        // Cache the player reference at start
+        target = GameObject.FindGameObjectWithTag("Player");
+    }
 
     public State CurrentState => currentState;
 
@@ -98,7 +104,8 @@ public class AICharacter : MonoBehaviour
                 break;
 
             case State.Attack:
-                // Attack logic will be handled in Update
+                characterController.OnMove(Vector2.zero); // Stop moving to attack
+                animator?.SetTrigger("Attack");
                 break;
 
             case State.Death:
@@ -126,7 +133,12 @@ public class AICharacter : MonoBehaviour
     /// </summary>
     private void Patrol()
     {
-        // Example: If the AI reaches a boundary, flip direction
+        if (target != null && Vector2.Distance(transform.position, target.transform.position) <= chaseRange)
+        {
+            SetState(State.Chase);
+            return;
+        }
+
         if (Random.value < 0.01f) // Random chance to flip direction
         {
             FlipDirection();
@@ -167,14 +179,22 @@ public class AICharacter : MonoBehaviour
     /// </summary>
     private void AttackTarget()
     {
-        if (target == null || Vector2.Distance(transform.position, target.transform.position) > attackRange)
+        if (target == null)
         {
-            SetState(State.Patrol); // Return to patrol if target is out of range
+            SetState(State.Patrol);
             return;
         }
 
-        Debug.Log("Attacking target!");
-        // Add attack logic here (e.g., damage the target)
+        float distanceToTarget = Vector2.Distance(transform.position, target.transform.position);
+
+        if (distanceToTarget > chaseRange)
+        {
+            SetState(State.Patrol);
+        }
+        else if (distanceToTarget > attackRange)
+        {
+            SetState(State.Chase); // Player backed out of attack range, resume chasing
+        }
     }
 
     /// <summary>
@@ -205,21 +225,7 @@ public class AICharacter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Player detected! Starting chase.");
-            SetTarget(other.gameObject);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Player out of range. Returning to patrol.");
-            target = null;
-            SetState(State.Patrol);
-        }
+        // Reserved for attack damage handling
     }
 
     public void SetDirection(int direction)
