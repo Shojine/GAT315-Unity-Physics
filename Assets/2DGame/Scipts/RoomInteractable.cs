@@ -65,7 +65,7 @@ public class RoomInteractable : MonoBehaviour
             {
                 if(roomName == "Win")
                 {
-                    Destroy(dialogueManager.gameObject);
+                    Destroy(FindFirstObjectByType<InventoryManager>().gameObject);
                 }
                 PlaySoundAndEnterRoom(unlockedSound, roomName); // Play the unlocked sound and enter the room
             }

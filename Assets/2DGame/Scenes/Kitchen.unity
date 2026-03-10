@@ -270,11 +270,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1296613004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 10.3}
-  m_SizeDelta: {x: 814.4, y: 125}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1000, y: 62.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &217463151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -988,7 +988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: lockedMessage
-      value: There's a chain is blocking the fridge
+      value: There's a cahin blocking the fridge
       objectReference: {fileID: 0}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: searchMessage
@@ -8116,15 +8116,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0036458336
+    x: 0.024479168
     y: 0
-    width: 0.28645834
-    height: 0.42962962
+    width: 0.9510417
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 0
-  orthographic size: 0.49270073
+  orthographic size: 6.5060244
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -8853,6 +8853,7 @@ MonoBehaviour:
   dialogueText: {fileID: 217463151}
   characterDelay: 0.05
   displayDuration: 2
+  panelPadding: {x: 24, y: 16}
 --- !u!4 &1844000631
 Transform:
   m_ObjectHideFlags: 0

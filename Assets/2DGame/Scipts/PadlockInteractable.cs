@@ -17,8 +17,11 @@ using TMPro;
 /// </summary>
 public class PadlockInteractable : MonoBehaviour
 {
+    [Header("First Look")]
+    [SerializeField] private string firstLookMessage = "Hmm, there's a lock here. Maybe there's a code somewhere...";
+
     [Header("Combination")]
-    [SerializeField] private string correctCode = "0000";
+    [SerializeField] private string correctCode = ""; // Leave blank for a random code, or set a fixed code
 
     [Header("UI")]
     [SerializeField] private GameObject padlockPanel;
@@ -35,21 +38,45 @@ public class PadlockInteractable : MonoBehaviour
     [Header("Lock Object")]
     [SerializeField] private SpriteRenderer lockSprite; // Lock sprite to hide when solved
 
+    public static string RuntimeCode = null; // Shared in memory, resets each play session
+
     private int[] digits = new int[4];
     private int selectedIndex = 0;
     private bool isOpen = false;
     private bool isPlayerInRange = false;
     private bool isSolved = false;
+    private bool hasShownFirstLook = false;
+    private bool isWaitingToOpen = false;
     private AudioSource audioSource;
     private InputListener[] playerInputListeners;
+    private DialogueManager dialogueManager;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        dialogueManager = FindAnyObjectByType<DialogueManager>();
 
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
             playerInputListeners = player.GetComponents<InputListener>();
+
+        // Resolve the code: fixed in Inspector > already generated this session > generate new random
+        if (!string.IsNullOrEmpty(correctCode))
+        {
+            RuntimeCode = correctCode;
+        }
+        else if (RuntimeCode != null)
+        {
+            correctCode = RuntimeCode;
+        }
+        else
+        {
+            correctCode = Random.Range(0, 10000).ToString("D4");
+            RuntimeCode = correctCode;
+        }
+
+        if (InventoryManager.Instance.HasKey("initialPadlock"))
+            hasShownFirstLook = true;
 
         if (padlockPanel != null)
             padlockPanel.SetActive(false);
@@ -63,7 +90,7 @@ public class PadlockInteractable : MonoBehaviour
         if (kb == null) return;
 
         // Open UI when player presses E in range (blocked after solving)
-        if (!isOpen && !isSolved && isPlayerInRange && kb.eKey.wasPressedThisFrame)
+        if (!isOpen && !isSolved && !isWaitingToOpen && isPlayerInRange && kb.eKey.wasPressedThisFrame)
         {
             OpenUI();
             return;
@@ -105,6 +132,17 @@ public class PadlockInteractable : MonoBehaviour
     public void OpenUI()
     {
         if (padlockPanel == null) return;
+
+        if (!hasShownFirstLook && !string.IsNullOrEmpty(firstLookMessage) && !InventoryManager.Instance.HasKey("initialPadlock"))
+        {
+            hasShownFirstLook = true;
+            isWaitingToOpen = true;
+            InventoryManager.Instance.AddKey("initialPadlock");
+            dialogueManager?.ShowDialogue(firstLookMessage);
+            StartCoroutine(OpenAfterDialogue(firstLookMessage));
+            return;
+        }
+
         padlockPanel.SetActive(true);
         isOpen = true;
         selectedIndex = 0;
@@ -112,6 +150,13 @@ public class PadlockInteractable : MonoBehaviour
 
         if (playerInputListeners != null)
             foreach (var l in playerInputListeners) l.enabled = false;
+    }
+
+    private System.Collections.IEnumerator OpenAfterDialogue(string message)
+    {
+        yield return new WaitForSeconds(dialogueManager.totalDisplayTime + 0.5f);
+
+        OpenUI();
     }
 
     public void CloseUI()

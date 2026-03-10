@@ -154,7 +154,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 8.8, y: -96.51}
-  m_SizeDelta: {x: 500, y: 50}
+  m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &422595111
 MonoBehaviour:
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You     Won
+  m_text: You     Escaped
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b8f0fe66f300b33478f5ca25be4b1855, type: 2}
   m_sharedMaterial: {fileID: -2156642694674160025, guid: b8f0fe66f300b33478f5ca25be4b1855, type: 2}
@@ -290,7 +290,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -89.2}
-  m_SizeDelta: {x: 500, y: 50}
+  m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &424508570
 MonoBehaviour:
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You     Won
+  m_text: You     Escaped
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b8f0fe66f300b33478f5ca25be4b1855, type: 2}
   m_sharedMaterial: {fileID: -2156642694674160025, guid: b8f0fe66f300b33478f5ca25be4b1855, type: 2}

@@ -24,7 +24,12 @@ public class CabinetInteractable : MonoBehaviour
 
     private void Start()
     {
-        if (!string.IsNullOrEmpty(keyID) || !string.IsNullOrEmpty(toolName)) hasKey = true;
+        bool alreadyHasItems =
+            (string.IsNullOrEmpty(keyID)   || InventoryManager.Instance.HasKey(keyID)) &&
+            (string.IsNullOrEmpty(toolName) || InventoryManager.Instance.HasKey(toolName));
+
+        if ((!string.IsNullOrEmpty(keyID) || !string.IsNullOrEmpty(toolName)) && !alreadyHasItems)
+            hasKey = true;
         dialogueManager = FindObjectOfType<DialogueManager>(); // Find the DialogueManager in the scene
         audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
     }
@@ -45,6 +50,11 @@ public class CabinetInteractable : MonoBehaviour
             Debug.Log("Player is in range. Searching cabinet...");
 
             Debug.Log($"Cabinet has item: {hasKey}");
+
+            if (audioPlayer != null && PadlockInteractable.RuntimeCode != null)
+            {
+                searchMessage = $"Theres a code: {PadlockInteractable.RuntimeCode}.";
+            }
 
             if (hasKey)
             {
@@ -82,6 +92,10 @@ public class CabinetInteractable : MonoBehaviour
                 // Show the message for an empty cabinet
                 if (dialogueManager != null)
                 {
+                    if(audioPlayer != null && PadlockInteractable.RuntimeCode != null)
+                    {
+                        emptyMessage = $"Code: {PadlockInteractable.RuntimeCode}.";
+                    }
                     dialogueManager.ShowDialogue(emptyMessage);
                     Debug.Log($"Displayed message: {emptyMessage}");
                 }

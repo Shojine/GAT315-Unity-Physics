@@ -1014,8 +1014,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguePanel: {fileID: 1491653278}
   dialogueText: {fileID: 1389414195}
-  characterDelay: 0.05
-  displayDuration: 3.5
+  characterDelay: 0.07
+  displayDuration: 1.7
+  panelPadding: {x: 24, y: 16}
 --- !u!4 &659524075
 Transform:
   m_ObjectHideFlags: 0
@@ -7537,7 +7538,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -1.7315063, y: 0, z: -3.4627686, w: -5.194214}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7565,11 +7566,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1491653279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 10.3}
-  m_SizeDelta: {x: 814.4, y: 125}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1000, y: 62.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1398057777
 GameObject:
   m_ObjectHideFlags: 0
@@ -7994,7 +7995,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 0
-  orthographic size: 0.49270073
+  orthographic size: 5.625
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -8590,6 +8591,10 @@ PrefabInstance:
       value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 2828225026949745847, guid: b9d1d77453dcab747902bb1fe7fc5b39, type: 3}
+      propertyPath: lockedMessage
+      value: What! the door is locked.. Must be a key somewhere
+      objectReference: {fileID: 0}
+    - target: {fileID: 2828225026949745847, guid: b9d1d77453dcab747902bb1fe7fc5b39, type: 3}
       propertyPath: requiredKeyID
       value: bedroom
       objectReference: {fileID: 0}
@@ -8695,6 +8700,7 @@ GameObject:
   - component: {fileID: 2054094957}
   - component: {fileID: 2054094958}
   - component: {fileID: 2054094959}
+  - component: {fileID: 2054094960}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -9016,6 +9022,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2054094960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054094950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4594914978180540b83dea38a7647dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - What the.. what time is it?
+  - Wh-What was that!!!
+  - I should go check it out
+  skipIfHasKey: bedroom
+  crashSound: {fileID: 8300000, guid: 126a9fbba94eaa84da7a858354a4c5c1, type: 3}
+  delayBetweenLines: 0.2
+  initialDelay: 1
 --- !u!1 &2088143667
 GameObject:
   m_ObjectHideFlags: 0
