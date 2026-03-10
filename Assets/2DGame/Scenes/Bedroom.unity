@@ -9035,9 +9035,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lines:
-  - What the.. what time is it?
+  - What the.. what time is it..
   - Wh-What was that!!!
-  - I should go check it out
+  - I should investigate.
   skipIfHasKey: bedroom
   crashSound: {fileID: 8300000, guid: 126a9fbba94eaa84da7a858354a4c5c1, type: 3}
   delayBetweenLines: 0.2
