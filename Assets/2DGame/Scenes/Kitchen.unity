@@ -988,7 +988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: lockedMessage
-      value: There's a cahin blocking the fridge
+      value: There's a chain blocking the fridge
       objectReference: {fileID: 0}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: searchMessage
