@@ -9046,10 +9046,10 @@ PrefabInstance:
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: keySound
       value: 
-      objectReference: {fileID: 8300000, guid: 31f07f25204eb7b46a6ff59f6a69c83f, type: 3}
+      objectReference: {fileID: 8300000, guid: 2d2e2e2080f08de48b1d5426b210b2f0, type: 3}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: toolName
-      value: Closset Door Key
+      value: Closet Door Key
       objectReference: {fileID: 0}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: lockedSound
