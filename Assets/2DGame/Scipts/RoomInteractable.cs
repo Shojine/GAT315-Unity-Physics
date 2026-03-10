@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(AudioSource))]
 public class RoomInteractable : MonoBehaviour
 {
-    [SerializeField] public string roomName; // The name of the room to load
-    [SerializeField] public string doorID;   // A unique identifier for this door
+    [SerializeField] public string roomName;     // The name of the room to load
+    [SerializeField] public string doorID;       // A unique identifier for this door
+    [SerializeField] public string targetDoorID; // The doorID to spawn at in the destination scene
+    [SerializeField] private Vector2 spawnOffset = new Vector2(1f, 0f); // Offset from door when spawning player
     [SerializeField] public bool isLocked = false; // Whether the door is locked
     [SerializeField] public string requiredKeyID;  // The ID of the key required to unlock the door
     [SerializeField] public string lockedMessage = "The door is locked."; // Message to display when locked
@@ -23,10 +25,19 @@ public class RoomInteractable : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         dialogueManager = FindObjectOfType<DialogueManager>(); // Find the DialogueManager in the scene
         audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
+
+        // If the player came through this door, spawn them here
+        if (PlayerPrefs.GetString("LastDoorID", "") == doorID)
+        {
+            PlayerPrefs.DeleteKey("LastDoorID");
+            if (player != null)
+                player.transform.position = new Vector2(transform.position.x + spawnOffset.x, player.transform.position.y);
+        }
     }
 
     public void OnInteract()
     {
+        if (!enabled) return;
         if (isPlayerInRange)
         {
             if (isLocked)
@@ -52,6 +63,10 @@ public class RoomInteractable : MonoBehaviour
             }
             else
             {
+                if(roomName == "Win")
+                {
+                    Destroy(dialogueManager.gameObject);
+                }
                 PlaySoundAndEnterRoom(unlockedSound, roomName); // Play the unlocked sound and enter the room
             }
         }
@@ -91,8 +106,8 @@ public class RoomInteractable : MonoBehaviour
 
     private void EnterRoom(string room)
     {
-        // Store the current door's ID for when the player returns
-        PlayerPrefs.SetString("LastDoorID", doorID);
+        // Store the destination door ID so the next scene knows where to spawn the player
+        PlayerPrefs.SetString("LastDoorID", targetDoorID);
 
         // Load the new scene
         SceneManager.LoadScene(room);

@@ -20,6 +20,7 @@ public class CabinetInteractable : MonoBehaviour
     private bool hasKey = false; // Whether the cabinet still contains a key or tool
     private DialogueManager dialogueManager;
     private AudioSource audioSource;
+    [SerializeField] private GameObject audioPlayer;
 
     private void Start()
     {
@@ -44,6 +45,7 @@ public class CabinetInteractable : MonoBehaviour
             Debug.Log("Player is in range. Searching cabinet...");
 
             Debug.Log($"Cabinet has item: {hasKey}");
+
             if (hasKey)
             {
                 audioSource.PlayOneShot(keySound);
@@ -67,6 +69,11 @@ public class CabinetInteractable : MonoBehaviour
                 }
 
                 this.hasKey = false; // Mark the cabinet as empty
+
+                if(audioPlayer != null)
+                {
+                    audioPlayer.SetActive(true);
+                }
             }
             else
             {
@@ -82,7 +89,6 @@ public class CabinetInteractable : MonoBehaviour
                 {
                     Debug.LogError("DialogueManager is missing.");
                 }
-                audioSource.PlayOneShot(searchSound);
             }
         }
         else

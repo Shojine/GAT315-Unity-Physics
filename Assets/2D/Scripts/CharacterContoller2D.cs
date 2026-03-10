@@ -83,6 +83,16 @@ public class CharacterController2D : MonoBehaviour
             audioSource.clip = walkingSound;
             audioSource.loop = true; // Loop the walking sound
         }
+
+        // Restore facing direction from previous scene
+        facing = PlayerPrefs.GetInt("PlayerFacing", FACE_LEFT);
+        if (spriteRenderer != null)
+            spriteRenderer.flipX = facing == FACE_LEFT;
+    }
+
+    void OnDestroy()
+    {
+        PlayerPrefs.SetInt("PlayerFacing", facing);
     }
 
     /// <summary>

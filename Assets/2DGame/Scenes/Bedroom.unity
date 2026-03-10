@@ -1300,8 +1300,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
+      propertyPath: toolName
+      value: Tv Remote
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
+      propertyPath: lockedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d78213714d375b1469c9bf0582441534, type: 3}
+    - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: emptyMessage
       value: Just hanging shirts
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
+      propertyPath: lockedMessage
+      value: I need the closset door key
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
+      propertyPath: searchMessage
+      value: I found the tv remote
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509649801228007780, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
+      propertyPath: requiredToolName
+      value: Closset Door Key
       objectReference: {fileID: 0}
     - target: {fileID: 7517910973479731113, guid: 1901a16a2d1fa3c488c9efcfc1c5fb0f, type: 3}
       propertyPath: m_Name
@@ -7974,7 +7994,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 0
-  orthographic size: 5.625
+  orthographic size: 0.49270073
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -8566,8 +8586,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: f714115fb33ea384aa04a9d75516c5c2, type: 3}
     - target: {fileID: 2828225026949745847, guid: b9d1d77453dcab747902bb1fe7fc5b39, type: 3}
+      propertyPath: targetDoorID
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 2828225026949745847, guid: b9d1d77453dcab747902bb1fe7fc5b39, type: 3}
       propertyPath: requiredKeyID
       value: bedroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 2828225026949745847, guid: b9d1d77453dcab747902bb1fe7fc5b39, type: 3}
+      propertyPath: spawnOffset.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2828225026949745847, guid: b9d1d77453dcab747902bb1fe7fc5b39, type: 3}
       propertyPath: unlockedSound
