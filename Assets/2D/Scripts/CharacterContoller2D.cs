@@ -265,7 +265,7 @@ public class CharacterController2D : MonoBehaviour
     {
         // Stop all movement and set velocity to zero
         rb.linearVelocity = Vector2.zero;
-        rb.isKinematic = true;  // Disable physics interactions
+        rb.bodyType = RigidbodyType2D.Kinematic;  // Disable physics interactions
         rb.simulated = false;   // Disable simulation
         animator?.SetTrigger("Death");
     }

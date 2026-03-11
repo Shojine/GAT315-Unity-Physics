@@ -17,7 +17,7 @@ public abstract class ValueData<T> : ScriptableObjectBase
 	/// The current value stored in this ScriptableObject.
 	/// Will be reset to defaultValue when the game starts.
 	/// </summary>
-	[SerializeField] protected T value;
+	[SerializeField] new protected T value;
 
 	/// <summary>
 	/// Public property to access or modify the stored value.

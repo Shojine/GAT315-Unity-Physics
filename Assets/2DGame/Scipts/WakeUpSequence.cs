@@ -25,7 +25,7 @@ public class WakeUpSequence : MonoBehaviour
 
     private void Start()
     {
-        dialogueManager = FindObjectOfType<DialogueManager>();
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
         audioSource = GetComponent<AudioSource>();
 
         var player = GameObject.FindGameObjectWithTag("Player");

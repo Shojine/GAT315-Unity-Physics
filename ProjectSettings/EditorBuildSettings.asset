@@ -9,26 +9,26 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/2DGame/Scenes/Hallway.unity
-    guid: 33be4b3356a700447bfc951519a87837
-  - enabled: 1
-    path: Assets/2DGame/Scenes/Kitchen.unity
-    guid: 9fa395f04f9d65b49b5960f27083899f
+    path: Assets/2DGame/Scenes/MainScene.unity
+    guid: ad01bd28182c9a74ba724ed40702de4a
   - enabled: 1
     path: Assets/2DGame/Scenes/Bedroom.unity
     guid: eb0d2d5031a7a8943ab164742e6b74bb
   - enabled: 1
-    path: Assets/2DGame/Scenes/LaundryRoom.unity
-    guid: 81dc7013fed988e4ab3af0f0b9699296
+    path: Assets/2DGame/Scenes/Hallway.unity
+    guid: 33be4b3356a700447bfc951519a87837
   - enabled: 1
     path: Assets/2DGame/Scenes/LivingRoom.unity
     guid: 7621261d8adfd2e49a0f6600187992ad
   - enabled: 1
+    path: Assets/2DGame/Scenes/Kitchen.unity
+    guid: 9fa395f04f9d65b49b5960f27083899f
+  - enabled: 1
+    path: Assets/2DGame/Scenes/LaundryRoom.unity
+    guid: 81dc7013fed988e4ab3af0f0b9699296
+  - enabled: 1
     path: Assets/2DGame/Scenes/Win.unity
     guid: aebd1fbec6c2e60458d6cf9536ccdeaa
-  - enabled: 1
-    path: Assets/2DGame/Scenes/MainScene.unity
-    guid: ad01bd28182c9a74ba724ed40702de4a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

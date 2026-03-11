@@ -23,7 +23,7 @@ public class RoomInteractable : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        dialogueManager = FindObjectOfType<DialogueManager>(); // Find the DialogueManager in the scene
+        dialogueManager = FindFirstObjectByType<DialogueManager>(); // Find the DialogueManager in the scene
         audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
 
         // If the player came through this door, spawn them here

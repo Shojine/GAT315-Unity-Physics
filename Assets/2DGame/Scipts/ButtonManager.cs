@@ -23,6 +23,5 @@ public class ButtonManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false; // Stop play mode in the editor
     }
 }

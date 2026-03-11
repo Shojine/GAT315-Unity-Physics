@@ -10,7 +10,7 @@ public class RoomManager : MonoBehaviour
         if (!string.IsNullOrEmpty(lastDoorID))
         {
             // Find the door with the matching ID
-            RoomInteractable[] doors = FindObjectsOfType<RoomInteractable>();
+            RoomInteractable[] doors = FindObjectsByType<RoomInteractable>(FindObjectsSortMode.None);
             foreach (var door in doors)
             {
                 if (door.doorID == lastDoorID)

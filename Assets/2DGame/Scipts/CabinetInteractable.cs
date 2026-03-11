@@ -30,7 +30,7 @@ public class CabinetInteractable : MonoBehaviour
 
         if ((!string.IsNullOrEmpty(keyID) || !string.IsNullOrEmpty(toolName)) && !alreadyHasItems)
             hasKey = true;
-        dialogueManager = FindObjectOfType<DialogueManager>(); // Find the DialogueManager in the scene
+        dialogueManager = FindAnyObjectByType<DialogueManager>(); // Find the DialogueManager in the scene
         audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
     }
 
